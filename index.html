@@ -3,121 +3,177 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>[Your Nickname]'s News Hub</title>
+    <title>Success Designing Service - Blog</title>
     <link rel="stylesheet" href="styles.css">
     <script defer src="script.js"></script>
-</head>
-<body>
-    <header>
-        <div class="logo">
-            <img src="img/38.jpg" alt="Success Designs">
-        </div>
-        <h1>Welcome to Success Designing News Hub</h1>
-    </header>
-    <nav>
-        <a href="#">Home</a>
-        <a href="#about">About</a>
-        <a href="#blog">News</a>
-        <a href="#contact">Contact</a>
-        <input type="text" id="search-bar" placeholder="Search news...">
-    </nav>
-    <marquee class="news-ticker">Breaking: Stay updated with the latest world news! 🚀</marquee>
-    <div class="container">
-        <aside class="sidebar">
-            <h2>Trending News</h2>
-            <ul>
-                <li><a href="#">Major Political Event Shakes the World</a></li>
-                <li><a href="#">Stock Market Sees Huge Gains</a></li>
-                <li><a href="#">Tech Giants Unveil New Innovations</a></li>
-            </ul>
-            <h2>Categories</h2>
-            <ul>
-                <li><a href="#">Politics</a></li>
-                <li><a href="#">Business</a></li>
-                <li><a href="#">Technology</a></li>
-                <li><a href="#">Sports</a></li>
-            </ul>
-        </aside>
-        <main>
-            <div class="featured-news">
-                <h2>Breaking News: Major Event Unfolds</h2>
-                <p>Stay updated with the latest breaking news happening around the world.</p>
-            </div>
-            <div class="blog-post">
-                <img src="img/38.jpg" alt="Blog Image">
-                <h2>Latest Political Updates</h2>
-                <p>The holiday season is the perfect time to pick up a new skill, and what better skill to learn than coding? With just your phone or PC, you can master the basics of HTML and CSS and start building your own websites. This guide will help you make the most of your holiday by learning to code in a fun and easy way.
-
-## Why Learn HTML & CSS?
-HTML (HyperText Markup Language) and CSS (Cascading Style Sheets) are the foundation of web development. Whether you want to create your own website, start a career in tech, or just understand how the web works, mastering these languages is a great start.
-
-## What You’ll Need
-- **A Smartphone or PC** – You can code using a mobile app or a text editor on your PC.
-- **A Code Editor** – For phones, use apps like AIDE, Juno, or Spck Editor. For PCs, try VS Code, Sublime Text, or Notepad++.
-- **A Web Browser** – Google Chrome or Firefox works best for testing your code.
-- **Internet Connection** (optional) – Many resources are available offline, but having access to online tutorials can be helpful.
-
-## Week-by-Week Learning Plan
-
-### **Week 1: Introduction to HTML**
-- Learn about HTML structure and tags.
-- Create your first webpage with headings, paragraphs, and links.
-- Add images and lists to your page.
-
-### **Week 2: Styling with CSS**
-- Understand CSS syntax and how to link CSS to HTML.
-- Learn about colors, fonts, and spacing.
-- Style your webpage with backgrounds, margins, and padding.
-
-### **Week 3: Layouts and Responsive Design**
-- Learn about divs and how to arrange content on a page.
-- Use CSS Grid and Flexbox for layout design.
-- Make your webpage mobile-friendly.
-
-### **Week 4: Final Project – Build Your Own Website**
-- Plan and design a simple personal website or portfolio.
-- Apply everything you’ve learned about HTML and CSS.
-- Test and refine your design.
-
-## Tips for Learning Effectively
-- **Practice Daily** – Even 30 minutes a day can make a big difference.
-- **Use Online Resources** – Websites like W3Schools, MDN Web Docs, and freeCodeCamp offer great tutorials.
-- **Join a Community** – Engage with other learners on platforms like GitHub, Discord, or social media groups.
-- **Experiment and Have Fun!** – Try modifying existing websites and see how small changes affect the design.
-
-## Conclusion
-With dedication and practice, you can master the basics of HTML and CSS within a few weeks. By the end of your holiday, you’ll have a solid foundation in web development and a website to showcase your skills. Ready to start? Grab your phone or PC and begin coding today!
-.</p>
-            </div>
-            <div class="blog-post">
-                <img src="placeholder.jpg" alt="Blog Image">
-                <h2>Business and Finance</h2>
-                <p>Explore the latest trends in finance, stock market insights, and business strategies.</p>
-            </div>
-        </main>
-    </div>
-    <footer>
-        <p>&copy; 2025 [Your Nickname] News Hub - All Rights Reserved</p>
-        <div class="social-media">
-            <a href="#">🔵 Facebook</a>
-            <a href="#">🐦 Twitter</a>
-            <a href="#">📸 Instagram</a>
-            <a href="#">🔗 LinkedIn</a>
-        </div>
-    </footer>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            text-align: center;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 20px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+        #hero {
+            padding: 50px;
+            background: url('animation-bg.gif') no-repeat center center/cover;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        .animation-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            animation: moveBg 10s infinite alternate;
+        }
+        @keyframes moveBg {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            color: white;
+            background: #28a745;
+            text-decoration: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .blog-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .blog-post {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 300px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .blog-post:hover {
+            transform: translateY(-10px);
+        }
+        .read-more {
+            display: block;
+            margin-top: 10px;
+            color: #007bff;
+            cursor: pointer;
+        }
+        .full-content {
+            display: none;
+            margin-top: 10px;
+        }
+        .social-links a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: white;
+        }
+        footer {
+            background: #222;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    </style>
     <script>
-        document.getElementById("dark-mode-toggle").addEventListener("click", function() {
-            document.body.classList.toggle("dark-mode");
-        });
+        document.addEventListener("DOMContentLoaded", function() {
+            const ctaButton = document.querySelector(".cta-button");
+            ctaButton.addEventListener("mouseover", function() {
+                ctaButton.style.background = "#218838";
+            });
+            ctaButton.addEventListener("mouseout", function() {
+                ctaButton.style.background = "#28a745";
+            });
 
-        document.getElementById("search-bar").addEventListener("input", function() {
-            let filter = this.value.toLowerCase();
-            let posts = document.querySelectorAll(".blog-post h2");
-            posts.forEach(post => {
-                let text = post.textContent.toLowerCase();
-                post.parentElement.style.display = text.includes(filter) ? "block" : "none";
+            document.querySelectorAll(".read-more").forEach(button => {
+                button.addEventListener("click", function() {
+                    let content = this.nextElementSibling;
+                    if (content.style.display === "none" || content.style.display === "") {
+                        content.style.display = "block";
+                        this.innerText = "Read Less";
+                    } else {
+                        content.style.display = "none";
+                        this.innerText = "Read More";
+                    }
+                });
             });
         });
     </script>
+</head>
+<body>
+    <header>
+        <h1>Success Designing Service</h1>
+        <p>Bringing creativity to life</p>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="animation-bg"></div>
+        <h2>Welcome to Our Blog</h2>
+        <p>Stay updated with the latest trends in design and technology.</p>
+        <a href="#blog" class="cta-button">Read Blog</a>
+    </section>
+
+    <section id="blog">
+        <h2>Latest Posts</h2>
+        <div class="blog-container">
+            <article class="blog-post">
+                <h3>How to Master Graphic Design</h3>
+                <p>Discover the essential skills every designer needs.</p>
+                <span class="read-more">Read More</span>
+                <div class="full-content">
+                    <p>Graphic design is more than just aesthetics. Learn how to communicate visually...</p>
+                </div>
+            </article>
+            <article class="blog-post">
+                <h3>CSS Tricks for Stunning Websites</h3>
+                <p>Enhance your designs with these expert tips.</p>
+                <span class="read-more">Read More</span>
+                <div class="full-content">
+                    <p>CSS is a powerful tool that transforms your website's appearance. Explore animations...</p>
+                </div>
+            </article>
+        </div>
+    </section>
+
+    <footer>
+       <marquee ><p>&copy; 2025 Success Designing Service. All Rights Reserved.</p></marquee>
+        <div class="social-links">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </footer>
 </body>
 </html>
