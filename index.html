@@ -3,177 +3,186 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Designing Service - Blog</title>
+    <title>Responsive Blog</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="script.js"></script>
+    <script defer>
+        document.addEventListener("DOMContentLoaded", () => {
+            const likeButtons = document.querySelectorAll(".like-btn");
+            const readMoreButtons = document.querySelectorAll(".read-more");
+            
+            likeButtons.forEach((button, index) => {
+                let likes = localStorage.getItem(`likes-${index}`) || 0;
+                button.textContent = `Like (${likes})`;
+
+                button.addEventListener("click", () => {
+                    likes++;
+                    localStorage.setItem(`likes-${index}`, likes);
+                    button.textContent = `Like (${likes})`;
+                });
+            });
+            
+            readMoreButtons.forEach((button) => {
+                button.addEventListener("click", () => {
+                    const content = button.previousElementSibling;
+                    content.classList.toggle("expanded");
+                    button.textContent = content.classList.contains("expanded") ? "Read Less" : "Read More";
+                });
+            });
+        });
+    </script>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
-            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
-            text-align: center;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
-        header {
-            background: #333;
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: white;
-            padding: 20px;
         }
-        nav ul {
+        .nav-links {
             list-style: none;
-            padding: 0;
+            display: flex;
         }
-        nav ul li {
-            display: inline;
+        .nav-links li {
             margin: 0 15px;
         }
-        nav ul li a {
+        .nav-links a {
             color: white;
             text-decoration: none;
-        }
-        #hero {
-            padding: 50px;
-            background: url('animation-bg.gif') no-repeat center center/cover;
-            color: white;
-            position: relative;
-            overflow: hidden;
-        }
-        .animation-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.2);
-            animation: moveBg 10s infinite alternate;
-        }
-        @keyframes moveBg {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.1); }
-        }
-        .cta-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-top: 20px;
-            color: white;
-            background: #28a745;
-            text-decoration: none;
-            border-radius: 5px;
-            cursor: pointer;
+            font-size: 1rem;
         }
         .blog-container {
-            display: flex;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
-            margin-top: 20px;
+            padding: 20px;
+            flex-grow: 1;
         }
         .blog-post {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            max-width: 300px;
-            transition: transform 0.3s ease-in-out;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
-        .blog-post:hover {
-            transform: translateY(-10px);
+        .blog-post img {
+            width: 100%;
+            border-radius: 8px;
         }
-        .read-more {
-            display: block;
-            margin-top: 10px;
-            color: #007bff;
+        .content {
+            max-height: 100px;
+            overflow: hidden;
+            transition: max-height 0.3s ease-in-out;
+        }
+        .content.expanded {
+            max-height: none;
+        }
+        .like-btn, .read-more {
+            background: #2575fc;
+            color: white;
+            border: none;
+            padding: 10px;
             cursor: pointer;
-        }
-        .full-content {
-            display: none;
+            border-radius: 5px;
             margin-top: 10px;
         }
-        .social-links a {
+        .call-to-action {
+            text-align: center;
+            background: #6a11cb;
+            color: white;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 90%;
+            border-radius: 8px;
+        }
+        .call-to-action button {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        .social-media {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 90%;
+        }
+        .social-media a {
             margin: 0 10px;
             text-decoration: none;
-            color: white;
+            font-size: 1.5rem;
+            color: #2575fc;
         }
         footer {
+            text-align: center;
+            padding: 10px;
             background: #222;
             color: white;
-            padding: 10px;
-            margin-top: 20px;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const ctaButton = document.querySelector(".cta-button");
-            ctaButton.addEventListener("mouseover", function() {
-                ctaButton.style.background = "#218838";
-            });
-            ctaButton.addEventListener("mouseout", function() {
-                ctaButton.style.background = "#28a745";
-            });
-
-            document.querySelectorAll(".read-more").forEach(button => {
-                button.addEventListener("click", function() {
-                    let content = this.nextElementSibling;
-                    if (content.style.display === "none" || content.style.display === "") {
-                        content.style.display = "block";
-                        this.innerText = "Read Less";
-                    } else {
-                        content.style.display = "none";
-                        this.innerText = "Read More";
-                    }
-                });
-            });
-        });
-    </script>
 </head>
 <body>
     <header>
-        <h1>Success Designing Service</h1>
-        <p>Bringing creativity to life</p>
-        <nav>
-            <ul>
+        <nav class="navbar">
+            <div class="logo">My Blog</div>
+            <ul class="nav-links">
                 <li><a href="#">Home</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="#">Categories</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="hero">
-        <div class="animation-bg"></div>
-        <h2>Welcome to Our Blog</h2>
-        <p>Stay updated with the latest trends in design and technology.</p>
-        <a href="#blog" class="cta-button">Read Blog</a>
-    </section>
-
-    <section id="blog">
-        <h2>Latest Posts</h2>
-        <div class="blog-container">
+    <main>
+        <section class="call-to-action">
+            <h2>Join Our Blog Community</h2>
+            <p>Subscribe to receive the latest blog posts and updates.</p>
+            <button>Subscribe Now</button>
+        </section>
+        
+        <section class="blog-container">
             <article class="blog-post">
-                <h3>How to Master Graphic Design</h3>
-                <p>Discover the essential skills every designer needs.</p>
-                <span class="read-more">Read More</span>
-                <div class="full-content">
-                    <p>Graphic design is more than just aesthetics. Learn how to communicate visually...</p>
-                </div>
+                <img src="https://via.placeholder.com/300" alt="Blog Image">
+                <h2>Sample Blog Post</h2>
+                <p class="content">This is a sample blog post with SEO-optimized content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <button class="like-btn">Like (0)</button>
+                <button class="read-more">Read More</button>
             </article>
             <article class="blog-post">
-                <h3>CSS Tricks for Stunning Websites</h3>
-                <p>Enhance your designs with these expert tips.</p>
-                <span class="read-more">Read More</span>
-                <div class="full-content">
-                    <p>CSS is a powerful tool that transforms your website's appearance. Explore animations...</p>
-                </div>
+                <img src="https://via.placeholder.com/300" alt="Blog Image">
+                <h2>Another Blog Post</h2>
+                <p class="content">Explore new topics and insights here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae purus sit amet lacus egestas fermentum.</p>
+                <button class="like-btn">Like (0)</button>
+                <button class="read-more">Read More</button>
             </article>
-        </div>
-    </section>
+        </section>
+        
+        <section class="social-media">
+            <h2>Follow Us</h2>
+            <a href="#" target="_blank">🔵 Facebook</a>
+            <a href="#" target="_blank">🟣 Instagram</a>
+            <a href="#" target="_blank">🔷 Twitter</a>
+            <a href="#" target="_blank">🔗 LinkedIn</a>
+        </section>
+    </main>
 
     <footer>
-       <marquee ><p>&copy; 2025 Success Designing Service. All Rights Reserved.</p></marquee>
-        <div class="social-links">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-            <a href="#">Twitter</a>
-        </div>
+        <p>&copy; 2025 My Blog. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
