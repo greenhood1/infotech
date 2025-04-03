@@ -31,29 +31,29 @@
         });
     </script>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
             background-color: #f4f4f4;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
         }
         .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 20px;
+            padding: 1rem;
             background: linear-gradient(135deg, #6a11cb, #2575fc);
             color: white;
+            flex-wrap: wrap;
         }
         .nav-links {
             list-style: none;
             display: flex;
-        }
-        .nav-links li {
-            margin: 0 10px;
+            flex-wrap: wrap;
+            gap: 15px;
         }
         .nav-links a {
             color: white;
@@ -61,11 +61,11 @@
             font-size: 1rem;
         }
         .blog-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 20px;
             padding: 20px;
-            flex-grow: 1;
+            align-items: center;
         }
         .blog-post {
             background: white;
@@ -73,6 +73,8 @@
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 90%;
+            max-width: 500px;
         }
         .blog-post img {
             width: 100%;
@@ -100,38 +102,35 @@
             background: #6a11cb;
             color: white;
             padding: 20px;
+            width: 90%;
+            max-width: 500px;
             margin: 20px auto;
-            max-width: 90%;
             border-radius: 8px;
-        }
-        .call-to-action button {
-            background: #ff9800;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-            border-radius: 5px;
-            font-size: 1rem;
         }
         .social-media {
             text-align: center;
-            padding: 10px;
-            background: blue;
+            padding: 20px;
+            background: #fff;
             border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
             margin: 20px auto;
-            max-width: 60%;
-        }
-        .social-media a {
-            margin: 0 10px;
-            text-decoration: none;
-            font-size: 1.5rem;
-            color: #2575fc;
         }
         footer {
             text-align: center;
             padding: 10px;
             background: #222;
             color: white;
+        }
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .nav-links {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
@@ -182,7 +181,7 @@
     </main>
 
     <footer>
-       <marquee></marquee><p>&copy; 2025 My Blog. All Rights Reserved.</p></marquee>
+        <p>&copy; 2025 My Blog. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
