@@ -1,187 +1,93 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Blog</title>
-    <link rel="stylesheet" href="styles.css">
-    <script defer>
-        document.addEventListener("DOMContentLoaded", () => {
-            const likeButtons = document.querySelectorAll(".like-btn");
-            const readMoreButtons = document.querySelectorAll(".read-more");
-            
-            likeButtons.forEach((button, index) => {
-                let likes = localStorage.getItem(`likes-${index}`) || 0;
-                button.textContent = `Like (${likes})`;
-
-                button.addEventListener("click", () => {
-                    likes++;
-                    localStorage.setItem(`likes-${index}`, likes);
-                    button.textContent = `Like (${likes})`;
-                });
-            });
-            
-            readMoreButtons.forEach((button) => {
-                button.addEventListener("click", () => {
-                    const content = button.previousElementSibling;
-                    content.classList.toggle("expanded");
-                    button.textContent = content.classList.contains("expanded") ? "Read Less" : "Read More";
-                });
-            });
-        });
-    </script>
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem;
-            background: linear-gradient(135deg, #6a11cb, #2575fc);
-            color: white;
-            flex-wrap: wrap;
-        }
-        .nav-links {
-            list-style: none;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            font-size: 1rem;
-        }
-        .blog-container {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            padding: 20px;
-            align-items: center;
-        }
-        .blog-post {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            text-align: center;
-            width: 90%;
-            max-width: 500px;
-        }
-        .blog-post img {
-            width: 100%;
-            border-radius: 8px;
-        }
-        .content {
-            max-height: 100px;
-            overflow: hidden;
-            transition: max-height 0.3s ease-in-out;
-        }
-        .content.expanded {
-            max-height: none;
-        }
-        .like-btn, .read-more {
-            background: #2575fc;
-            color: white;
-            border: none;
-            padding: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-            margin-top: 10px;
-        }
-        .call-to-action {
-            text-align: center;
-            background: #6a11cb;
-            color: white;
-            padding: 20px;
-            width: 90%;
-            max-width: 500px;
-            margin: 20px auto;
-            border-radius: 8px;
-        }
-        .social-media {
-            text-align: center;
-            padding: 20px;
-            background: #fff;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            margin: 20px auto;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background: #222;
-            color: white;
-        }
-        @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                text-align: center;
-            }
-            .nav-links {
-                flex-direction: column;
-                gap: 10px;
-            }
-        }
-    </style>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>mywebsite</title>
+	<link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="logo">My Blog</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Categories</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+     <div class="hero">
+     	<div class="navbar">
+     		<img src="img/13.png" class="logo">
+                <a href="whatsapp/wat.html">
+     		<button type="button">Contact Me</button>
+     	</div>
+         <header>
+    <nav>
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="photo">Store</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="whatsapp/wat.html">Contact</a></li>
+        <li><a href="#">News</a></li>
+        <li><a href="#">Career</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <main>
-        <section class="call-to-action">
-            <h2>Join Our Blog Community</h2>
-            <p>Subscribe to receive the latest blog posts and updates.</p>
-            <button>Subscribe Now</button>
-        </section>
-        
-        <section class="blog-container">
-            <article class="blog-post">
-                <img src="https://via.placeholder.com/300" alt="Blog Image">
-                <h2>Sample Blog Post</h2>
-                <p class="content">This is a sample blog post with SEO-optimized content. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                <button class="like-btn">Like (0)</button>
-                <button class="read-more">Read More</button>
-            </article>
-            <article class="blog-post">
-                <img src="https://via.placeholder.com/300" alt="Blog Image">
-                <h2>Another Blog Post</h2>
-                <p class="content">Explore new topics and insights here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce vitae purus sit amet lacus egestas fermentum.</p>
-                <button class="like-btn">Like (0)</button>
-                <button class="read-more">Read More</button>
-            </article>
-        </section>
-        
-        <section class="social-media">
-            <h2>Follow Us</h2>
-            <a href="#" target="_blank">🔵 Facebook</a>
-            <a href="#" target="_blank">🟣 Instagram</a>
-            <a href="#" target="_blank">🔷 Twitter</a>
-            <a href="#" target="_blank">🔗 LinkedIn</a>
-        </section>
-    </main>
+ 
+     	<div class="content">
+     		<small>Welcome to</small>
+     		<h1>Ebene-Vento<br> Creative and Designing Studio!</h1>
+            <h2>We offer free website <strong>Hosting</strong> (No Monthly SUB.) to customers who purchace our Template.</h2><br>
+     		<a href="photo/index.html">
+            <button><strong>Explore My Designs</strong></button></a>
 
-    <footer>
-        <p>&copy; 2025 My Blog. All Rights Reserved.</p>
-    </footer>
+     	</div>
+
+     	<div class="side-bar">
+     		<img src="img/menu.png" class="menu">
+
+     		<div class="social-links">
+     			<img src="img/fb.png">
+     			<img src="img/ig.png">
+     			<img src="img/tw.png">
+     		</div>
+     		<div class="useful-links">
+     			<img src="img/share.png">
+     			<img src="img/info.png">
+     		</div>
+     	</div>
+
+    <div class="bubbles">
+    	<img src="img/bubble.png">
+    	<img src="img/bubble.png">
+    	<img src="img/bubble.png">
+    	<img src="img/bubble.png">
+        <img src="img/bubble.png">
+    	<img src="img/bubble.png">
+    	<img src="img/bubble.png">
+    </div>
+
+
+     </div>
+</body>
+</html>
+
+    <style>
+        /* Define keyframes for the circular animation */
+        @keyframes circularAnimation {
+            0% {
+                transform: translate(-50%, -50%) rotate(0deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translate(-50%, -50%) rotate(360deg);
+                opacity: 1;
+            }
+        }
+
+        /* Apply animation to the text */
+        .logo {
+           
+            animation: circularAnimation 2s linear forwards;
+        }
+    </style>
+
+
+<!-- Animated Text -->
+<h1 class="logo"></h1>
+
 </body>
 </html>
