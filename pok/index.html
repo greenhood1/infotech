@@ -87,9 +87,11 @@
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <a class="navbar-brand" href="#">Ebene-Vento Designs</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+     <button class="btn btn-outline-primary position-relative" onclick="toggleCart()">
+  <i class="fas fa-shopping-cart"></i>
+  <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cart-count">0</span>
+</button>
+
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto align-items-center">
           <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
@@ -191,6 +193,10 @@
     <ul id="cart-items" class="list-unstyled"></ul>
     <p><strong>Total:</strong> $<span id="total-price">0</span></p>
     <button class="btn btn-success w-100 mt-3" data-bs-toggle="modal" data-bs-target="#checkoutModal">Checkout</button>
+    <div class="mt-3 text-end">
+  <button class="btn btn-success" onclick="payWithPaystack()">Checkout with Paystack</button>
+</div>
+
   </div>
 
   <!-- Checkout Modal -->
@@ -301,7 +307,38 @@
     cart.style.display = cart.style.display === 'block' ? 'none' : 'block';
   }
 </script>
+<script>
+  function toggleCart() {
+    const cart = new bootstrap.Offcanvas(document.getElementById('cart'));
+    cart.toggle();
+  }
+</script>
 
+<script src="https://js.paystack.co/v1/inline.js"></script>
+<script>
+  function payWithPaystack() {
+    const total = cartItems.reduce((sum, item) => sum + item.price, 0) * 100; // in Kobo
+    const handler = PaystackPop.setup({
+      key: 'YOUR_PUBLIC_KEY_HERE', // Replace with your Paystack public key
+      email: 'customer@email.com', // You can collect this dynamically
+      amount: total,
+      currency: 'NGN',
+      ref: 'TX_' + Math.floor((Math.random() * 1000000000) + 1),
+      callback: function(response) {
+        alert('Payment complete! Reference: ' + response.reference);
+        // Clear cart
+        cartItems = [];
+        updateCart();
+        const offcanvas = bootstrap.Offcanvas.getInstance(document.getElementById('cart'));
+        offcanvas.hide();
+      },
+      onClose: function() {
+        alert('Transaction was not completed.');
+      }
+    });
+    handler.openIframe();
+  }
+</script>
 
 </body>
 </html>    
